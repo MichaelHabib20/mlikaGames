@@ -1,0 +1,49 @@
+<div class="games-container">
+  <h1 class="page-title">الألعاب المميزة</h1>
+  
+  <mat-card class="info-card">
+    <mat-card-content>
+      <div class="info-content">
+        <mat-icon class="info-icon">info</mat-icon>
+        <div class="info-text">
+          <span>جميع الاسعار غير شاملة ثمن النقل</span>
+          <div class="contact-info">
+            <!-- <mat-icon class="contact-icon">phone</mat-icon> -->
+            <div class="contact-details">
+              <span class="contact-label">للاستعلام او الحجز</span>
+              <br>
+              <span class="contact-name">أ / فادى جرجس</span>
+
+              <a href="tel:01211187976" class="contact-phone">01211187976</a>
+      
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="games-grid">
+    @for (game of games$ | async; track game.id) {
+      <mat-card class="game-card" [routerLink]="['/' + currentRouteType, game.id]">
+        <img mat-card-image [src]="game.images[0]" [alt]="game.title">
+        <mat-card-content>
+          <h2>{{ game.title }}</h2>
+          <!-- <mat-chip>{{ game.category }}</mat-chip> -->
+          <p class="description">{{ game.description | slice:0:105 }}...</p>
+          <div class="price-rating">
+            <span class="price" *ngIf="currentRouteType === 'games'">{{ game.price }} ج.م</span>
+            <span class="price" *ngIf="currentRouteType === 'church-games'">{{ game.churchPrice }} ج.م</span>
+            <!-- <span class="rating">
+              <mat-icon>star</mat-icon>
+              {{ game.rating }}
+            </span> -->
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">عرض التفاصيل</button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</div> 

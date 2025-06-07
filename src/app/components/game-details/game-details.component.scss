@@ -1,0 +1,121 @@
+.game-details-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-details-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: right;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+
+  h1 {
+    margin: 0;
+    font-size: 15px;
+    color: #333;
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+.game-info {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin: 1rem;
+
+  .rating {
+    display: flex;
+    align-items: center;
+    color: #ffc107;
+    font-size: 1.2rem;
+    font-family: 'Cairo', sans-serif;
+
+    mat-icon {
+      margin-left: 0.5rem;
+      margin-right: 0;
+    }
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2196f3;
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+.description {
+  padding: 1rem;
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+
+  button {
+    min-width: 150px;
+    font-family: 'Cairo', sans-serif;
+
+    mat-icon {
+      margin-left: 0.5rem;
+      margin-right: 0;
+    }
+  }
+
+  .buy-button {
+    background: #2196f3;
+    color: white;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+mat-chip {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+} 

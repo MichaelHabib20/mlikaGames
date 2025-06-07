@@ -1,0 +1,44 @@
+<div class="game-details-container">
+  @if (game$ | async; as game) {
+    <mat-card class="game-details-card">
+      <div class="image-gallery">
+        @for (image of game.images; track image) {
+          <img [src]="image" [alt]="game.title">
+        }
+      </div>
+      
+      <mat-card-content>
+        <div class="game-header">
+          <h1 class="game-title">{{ game.title }}</h1>
+          <!-- <mat-chip>{{ game.category }}</mat-chip> -->
+        </div>
+
+        <div class="game-info">
+          <!-- <div class="rating">
+            <mat-icon>star</mat-icon>
+            <span>{{ game.rating }}</span>
+          </div> -->
+          <div class="price" *ngIf="currentRouteType === 'games'">{{ game.price }} ج.م</div>
+          <div class="price" *ngIf="currentRouteType === 'church-games'">{{ game.churchPrice }} ج.م</div>
+        </div>
+
+        <p class="description">{{ game.description }}</p>
+
+        <div class="actions">
+          <a mat-raised-button color="primary" class="buy-button" href="tel:01211187976">
+            <mat-icon>phone</mat-icon>
+            اتصل الآن
+          </a>
+          <button mat-stroked-button routerLink="/{{ currentRouteType }}">
+            <mat-icon>arrow_back</mat-icon>
+            العودة للألعاب
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+</div> 
