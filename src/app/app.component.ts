@@ -99,6 +99,8 @@ import { MatIconModule } from '@angular/material/icon';
     }
   `]
 })
+// daa command ale by5lik t build w t publish 3la githup pages 3ltol
+// npx angular-cli-ghpages --dir=dist/malika-games/browser
 export class AppComponent {
   title = 'متجر الألعاب';
 }
