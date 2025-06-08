@@ -8,7 +8,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GamesService } from '../../services/games.service';
 import { Game } from '../../models/game.interface';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game-details',
@@ -26,15 +27,22 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
-  game$;
-  currentRouteType: 'games' | 'church-games' | null = null;
+  game$!: Observable<Game>;
+  currentRouteType: 'games' | 'church-games' = 'games';
+  selectedImage: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private gamesService: GamesService
   ) {
-    this.game$ = this.route.params.pipe(
-      switchMap(params => this.gamesService.getGameById(+params['id']))
+    this.game$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        const id = Number(params.get('id'));
+        this.currentRouteType = this.route.snapshot.url[0].path as 'games' | 'church-games';
+        return this.gamesService.getGameById(id).pipe(
+          filter((game): game is Game => game !== undefined)
+        );
+      })
     );
   }
 

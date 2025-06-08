@@ -2,9 +2,16 @@
   @if (game$ | async; as game) {
     <mat-card class="game-details-card">
       <div class="image-gallery">
-        @for (image of game.images; track image) {
-          <img [src]="image" [alt]="game.title">
-        }
+        <div class="main-image">
+          <img [src]="selectedImage || game.images[0]" [alt]="game.title">
+        </div>
+        <div class="thumbnails">
+          @for (image of game.images; track image) {
+            <div class="thumbnail" (click)="selectedImage = image" [class.active]="selectedImage === image">
+              <img [src]="image" [alt]="game.title">
+            </div>
+          }
+        </div>
       </div>
       
       <mat-card-content>
@@ -13,17 +20,35 @@
           <!-- <mat-chip>{{ game.category }}</mat-chip> -->
         </div>
 
-        <div class="game-info">
-          <!-- <div class="rating">
-            <mat-icon>star</mat-icon>
-            <span>{{ game.rating }}</span>
-          </div> -->
-          <div class="price" *ngIf="currentRouteType === 'games'">{{ game.price }} ج.م</div>
-          <div class="price" *ngIf="currentRouteType === 'church-games'">{{ game.churchPrice }} ج.م</div>
+        <div class="game-specs">
+          @if (game.area) {
+            <div class="spec-item">
+              <mat-icon>square_foot</mat-icon>
+              <div class="spec-content">
+                <span class="spec-label">المساحة</span>
+                <span class="spec-value">{{ game.area }} متر </span>
+              </div>
+            </div>
+          }
+          @if (game.height) {
+            <div class="spec-item">
+              <mat-icon>height</mat-icon>
+              <div class="spec-content">
+                <span class="spec-label">الارتفاع</span>
+                <span class="spec-value">{{ game.height }} متر</span>
+              </div>
+            </div>
+          }
         </div>
 
         <p class="description">{{ game.description }}</p>
 
+        <div class="game-info">
+          <div class="price" *ngIf="currentRouteType === 'games'">{{ game.price }} ج.م</div>
+          <div class="price" *ngIf="currentRouteType === 'church-games'">{{ game.churchPrice }} ج.م</div>
+        </div>
+
+        
         <div class="actions">
           <a mat-raised-button color="primary" class="buy-button" href="tel:01211187976">
             <mat-icon>phone</mat-icon>

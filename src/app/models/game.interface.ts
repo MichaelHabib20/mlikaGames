@@ -7,4 +7,6 @@ export interface Game {
     images: string[];
     category?: string;
     rating?: number;
+    area?: string;
+    height?: number;
 } 
