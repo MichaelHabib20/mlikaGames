@@ -252,6 +252,9 @@
     background: #2196f3;
     color: white;
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .loading {
